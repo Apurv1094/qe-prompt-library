@@ -34,6 +34,11 @@ Requirement (or the restated understanding from Requirement Understanding):
 {PASTE_REQUIREMENT_OR_RESTATED_SUMMARY}
 """
 
+## Optional
+- **App Overview / Product Context** — Provides system and business context for identifying application-specific gaps.
+- **Business Rules** — Relevant business rules that may expose additional scenario gaps.
+- **Known Dependencies / Related Features** — Existing features or systems that may interact with the requirement.
+
 Probe the requirement across each of the following gap categories. For
 each one, list the specific scenarios/questions this requirement does
 not address (if none, say "No gap identified"):

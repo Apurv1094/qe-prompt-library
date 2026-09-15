@@ -45,6 +45,9 @@ Your job is to identify the important things that need to be tested
 for this requirement. Do not write detailed test cases or step-by-step
 instructions.
 
+APP_OVERVIEW:
+{{Provide your Application overview}}
+
 Requirement:
 
 """
@@ -124,12 +127,12 @@ For each scenario:
 
 Assign priority:
 
-- P0 — Critical: Core functionality, major business flow,
+- P1 — Critical: Core functionality, major business flow,
   security, or data integrity.
-- P1 — High: Important functional, validation, permission,
+- P2 — High: Important functional, validation, permission,
   integration, or negative scenarios.
-- P2 — Medium: Boundary, alternate, or lower-risk scenarios.
-- P3 — Low: Nice-to-have or low-risk coverage.
+- P3 — Medium: Boundary, alternate, or lower-risk scenarios.
+- P4 — Low: Nice-to-have or low-risk coverage.
 
 Output in this format:
 
