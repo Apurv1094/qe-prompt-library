@@ -8,8 +8,6 @@ The purpose of this prompt is to provide the final execution picture after the i
 
 It must use the execution results provided by QA as the source of truth. It must not create new test cases, invent execution results, or declare missing tests as passed.
 
----
-
 ## Input
 
 ```text
@@ -81,13 +79,9 @@ EXECUTION_NOTES:
 """
 ```
 
----
-
 ## Prompt
 
-```text
-
-You are a senior QA engineer responsible for preparing the final Test Execution Summary.
+Preparing the final Test Execution Summary.
 
 The individual test execution activities have already been performed.
 
@@ -182,8 +176,6 @@ Output using exactly this structure:
 ## Recommended Next Action
 ```
 
----
-
 ## Expected Output
 
 The output should provide one consolidated view of the complete test execution.
@@ -199,8 +191,6 @@ It should answer:
 - Were any important regressions or functional failures found?
 - Is testing complete?
 - What should happen next?
-
----
 
 ## Scope Boundaries
 
@@ -228,8 +218,6 @@ It should answer:
 - Decide manual vs automation.
 - Replace detailed test execution reports.
 
----
-
 ## Standard Input Contract
 
 | Input | Purpose |
@@ -245,8 +233,6 @@ It should answer:
 | `BLOCKERS` | Execution blockers |
 | `EVIDENCE_SUMMARY` | Available execution evidence |
 | `EXECUTION_NOTES` | Additional execution context |
-
----
 
 # Example
 
@@ -361,8 +347,6 @@ Refund validation is incomplete due to an external dependency.
 """
 ```
 
----
-
 ## Example Output
 
 ```markdown
@@ -448,8 +432,6 @@ Based on the supplied results, QA should not consider the execution fully succes
 2. Restore the payment gateway dependency and re-execute the blocked refund validation cases.
 3. Review the updated results after re-execution before considering QA completion.
 ```
-
----
 
 ## Important Rule
 
