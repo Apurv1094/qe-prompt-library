@@ -8,8 +8,6 @@ The QA provides the requirement context, acceptance criteria, test cases, test d
 
 The output should determine whether the implemented functionality behaves as expected for the defined functional test cases. It must not create new test cases or perform unrelated requirement analysis.
 
----
-
 ## Input
 
 ```text
@@ -17,7 +15,7 @@ The output should determine whether the implemented functionality behaves as exp
 APP_OVERVIEW:
 
 """
-{APP_OVERVIEW}
+{APP_OVERVIEW}   
 """
 
 EPIC_DESCRIPTION:

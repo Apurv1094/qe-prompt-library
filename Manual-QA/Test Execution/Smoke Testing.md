@@ -10,8 +10,6 @@ The QA provides application context, build information, critical smoke test case
 
 The output must focus on critical build health and must not expand into full functional or regression testing.
 
----
-
 ## Input
 
 ```text
@@ -83,8 +81,6 @@ DEFECTS_FOUND:
 """
 ```
 
----
-
 ## Prompt
 
 ```text
@@ -154,8 +150,6 @@ Output using exactly this structure:
 ## Execution Conclusion
 ```
 
----
-
 ## Expected Output
 
 The output should answer:
@@ -165,8 +159,6 @@ The output should answer:
 - Did the critical functionality work?
 - Are there failures or blockers that prevent further testing?
 - Are the supplied results sufficient to consider the build stable for the next QA phase?
-
----
 
 ## Scope Boundaries
 
@@ -190,8 +182,6 @@ The output should answer:
 - Recommend automation.
 - Invent results or defects.
 - Treat smoke testing as a replacement for functional or regression testing.
-
----
 
 ## Standard Input Contract
 
