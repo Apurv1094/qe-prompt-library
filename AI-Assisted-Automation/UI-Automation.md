@@ -1,975 +1,730 @@
-# QE Prompt Library: UI Automation Framework Development
+# UI Automation Prompt Guide
+**QE Prompt Library | Owner:** QE Automation Team | **Version:** 3.0 | **Updated:** 14 October 2026
 
-**Owner:** QE Automation Team  
-**Audience:** QE / SDET / Development Teams  
-**Version:** 1.0
+## What this guide helps you do
 
----
+Use these ready-to-copy prompts with an AI assistant to **create, improve, troubleshoot, and maintain UI automation**. You do not need to write prompts from scratch.
 
-## 1. How to Use This Library
+This guide is for QA Engineers, SDETs, and developers working with tools such as Selenium, Playwright, or Cypress.
 
-1. Fill in the **Input Parameter Sheet** in Section 2.
-2. If something does not apply, enter `N/A`.
-3. For a complete framework, use the **Master Prompt** in Section 3 first.
-4. For smaller daily tasks, use the **Micro Prompts** in Section 4.
-5. Review every AI-generated output using the **Review Checklist** in Section 6 before committing it.
+## Start here: choose what you want to do
 
-### Important Rules
-
-- Never add real credentials, customer data, or confidential URLs to prompts.
-- Use dummy values such as `https://app.example.com` and `user@example.com`.
-- Always review and run AI-generated code before merging it into the framework.
-- Do not accept generated code without validating that it works for the project.
-
----
-
-# 2. Input Parameter Sheet
-
-Fill in the values below before using the Master Prompt.
-
-| # | What to Provide | Placeholder | Example |
-|---|---|---|---|
-| 1 | Application type | `{{APP_TYPE}}` | Web, Responsive Web, Mobile Web |
-| 2 | Application name | `{{APP_NAME}}` | Banking Portal, E-commerce Site |
-| 3 | Framework design | `{{FRAMEWORK_TYPE}}` | POM, Page Factory, Screenplay, BDD, Hybrid |
-| 4 | Automation tool | `{{TOOL}}` | Selenium, Playwright, Cypress |
-| 5 | Programming language | `{{LANGUAGE}}` | Java, Python, TypeScript |
-| 6 | Test runner | `{{TEST_RUNNER}}` | TestNG, JUnit, pytest, Playwright Test, Cucumber |
-| 7 | Build/package tool | `{{BUILD_TOOL}}` | Maven, Gradle, npm, pip |
-| 8 | Data-driven approach | `{{DATA_DRIVEN}}` | None, Excel, CSV, JSON, YAML, DataProvider |
-| 9 | Test data approach | `{{TEST_DATA_STRATEGY}}` | Static files, Faker, API-seeded, DB-seeded |
-| 10 | Reporting tool | `{{REPORTING}}` | Allure, Extent Reports, HTML Report |
-| 11 | Logging tool | `{{LOGGING}}` | Log4j2, SLF4J, Python logging |
-| 12 | Browsers | `{{BROWSERS}}` | Chrome, Firefox, Edge, Safari/WebKit |
-| 13 | Execution mode | `{{EXECUTION_MODE}}` | Local, Headless, Grid, Docker, Cloud |
-| 14 | Parallel execution | `{{PARALLEL}}` | Yes - 4 threads / No |
-| 15 | Environments | `{{ENVIRONMENTS}}` | dev, qa, staging, prod-smoke |
-| 16 | CI/CD tool | `{{CICD}}` | Jenkins, GitHub Actions, GitLab CI, Azure DevOps |
-| 17 | Additional features | `{{FEATURES}}` | Screenshot on failure, retry, video, API login |
-| 18 | Configuration approach | `{{CONFIG_APPROACH}}` | `.properties`, `.env`, YAML, JSON |
-| 19 | Coding standards | `{{CODING_STANDARDS}}` | Google Java Style, PEP8, ESLint + Prettier |
-| 20 | Sample scenarios | `{{SAMPLE_SCENARIOS}}` | Login, search, checkout |
-| 21 | Constraints | `{{CONSTRAINTS}}` | No paid libraries, Java 17, corporate proxy |
-
----
-
-# 3. Master Prompt: Generate a Complete UI Automation Framework
-
-Copy the prompt below and replace the `{{PLACEHOLDERS}}` with your project details.
-
-```text
-ROLE
-
-Act as a Senior QA Automation Engineer / Architect experienced in building
-scalable, maintainable UI automation frameworks.
-
-GOAL
-
-Design and generate a complete UI automation framework based on the
-project details provided below.
-
-PROJECT DETAILS
-
-- Application type: {{APP_TYPE}}
-- Application name: {{APP_NAME}}
-- Framework design: {{FRAMEWORK_TYPE}}
-- Automation tool: {{TOOL}}
-- Programming language: {{LANGUAGE}}
-- Test runner: {{TEST_RUNNER}}
-- Build tool: {{BUILD_TOOL}}
-- Data-driven approach: {{DATA_DRIVEN}}
-- Test data approach: {{TEST_DATA_STRATEGY}}
-- Reporting: {{REPORTING}}
-- Logging: {{LOGGING}}
-- Browsers: {{BROWSERS}}
-- Execution mode: {{EXECUTION_MODE}}
-- Parallel execution: {{PARALLEL}}
-- Environments: {{ENVIRONMENTS}}
-- CI/CD: {{CICD}}
-- Additional features: {{FEATURES}}
-- Configuration approach: {{CONFIG_APPROACH}}
-- Coding standards: {{CODING_STANDARDS}}
-- Sample scenarios: {{SAMPLE_SCENARIOS}}
-- Constraints: {{CONSTRAINTS}}
-
-WHAT TO GENERATE
-
-Generate the framework in this order.
-
-1. ARCHITECTURE
-
-- Explain the overall framework design in simple terms.
-- Explain the main layers and what each layer does.
-- Provide a simple text-based architecture diagram.
-
-2. PROJECT STRUCTURE
-
-- Show the complete folder/package structure.
-- Give a short explanation for each important folder.
-
-3. DEPENDENCIES
-
-- Generate the required dependency file such as pom.xml,
-  package.json, requirements.txt, etc.
-- Use stable versions.
-- Avoid unnecessary dependencies.
-
-4. CORE FRAMEWORK CODE
-
-Generate complete code for:
-
-a. Configuration management
-   - Read configuration for different environments.
-   - Support overrides through CLI/system properties/environment variables.
-   - Do not log secrets.
-
-b. Browser/driver setup
-   - Support the requested browsers and execution modes.
-   - Support parallel execution where requested.
-   - Handle setup and teardown safely.
-
-c. Base page
-   - Provide reusable UI actions.
-
-d. Base test
-   - Provide common test setup and cleanup.
-
-e. Common utilities
-   - Waits
-   - Click/type/select actions
-   - Screenshot capture
-   - Test data reading
-   - Random test data where required
-
-f. Logging
-
-g. Reporting
-
-5. PAGE OBJECTS AND TESTS
-
-- Create sample page objects.
-- Create sample automated tests for:
-  {{SAMPLE_SCENARIOS}}
-
-Rules:
-- Use stable locators.
-- Do not use hard waits such as Thread.sleep.
-- Keep assertions in the test layer.
-- Keep page objects focused on page actions.
-- Keep tests independent.
-
-6. DATA-DRIVEN TESTING
-
-Implement:
-{{DATA_DRIVEN}}
-
-Also provide:
-- Data reader
-- Sample data file
-- Sample test using the data
-- Positive, negative, and boundary data where applicable
-- Handling for empty or invalid data
-
-7. FAILURE HANDLING
-
-Add, where applicable:
-- Screenshot on failure
-- Video/trace on failure if supported
-- Retry mechanism if requested
-- Clear error messages
-- Proper test cleanup
-
-Important:
-Retries must not hide real application defects.
-
-8. CI/CD
-
-Generate a CI/CD pipeline for:
-{{CICD}}
-
-The pipeline should include:
-- Checkout
-- Dependency installation
-- Build/lint if applicable
-- Smoke tests
-- Regression tests
-- Environment/browser/tag parameters
-- Report generation
-- Screenshot/artifact storage
-- Build failure rules
-
-9. README
-
-Create a beginner-friendly README covering:
-- Framework overview
-- Prerequisites
-- Setup
-- Folder structure
-- How to run all tests
-- How to run a specific browser
-- How to run a specific environment
-- How to run a tag/suite
-- How to add a new page
-- How to add a new test
-- Reporting
-- CI/CD
-- Troubleshooting
-
-FRAMEWORK RULES
-
-- Follow SOLID and DRY principles.
-- Keep tests independent.
-- Separate test logic, page logic, test data, and configuration.
-- Do not hardcode URLs, credentials, or secrets.
-- Read secrets from environment variables or a secure vault.
-- Avoid fixed waits.
-- Prefer explicit waits or the automation tool's built-in auto-waiting.
-- Keep locators inside page objects.
-- Keep assertions inside tests.
-- Make driver/browser handling thread-safe for parallel execution.
-- Use clear naming conventions.
-- Add short comments/docstrings for public methods.
-- Do not create unnecessary framework complexity.
-- Do not invent application-specific information that was not provided.
-
-LOCATOR PRIORITY
-
-Prefer locators in this order:
-
-1. data-testid / other dedicated test attributes
-2. id
-3. Accessible role/name
-4. CSS
-5. XPath as a last resort
-
-OUTPUT RULES
-
-- Use clear headings.
-- Show the file path before each code file.
-- Provide complete code, not partial snippets.
-- Explain important design decisions briefly.
-- If information is missing, list assumptions first and then continue.
-- Clearly identify anything that requires project-specific changes.
-- End with:
-
-  Next Steps / Known Limitations
-```
-
----
-
-# 4. Micro Prompts for Daily QE Activities
-
-Use these prompts when you need to perform a specific automation task instead of generating the complete framework.
-
----
-
-## 4.1 Project Setup and Configuration
-
-### P-UI-01: Create Project Structure
-
-```text
-Act as a Senior QA Automation Engineer.
-
-Create the folder/package structure for a
-{{FRAMEWORK_TYPE}} UI automation framework using
-{{TOOL}}, {{LANGUAGE}}, and {{TEST_RUNNER}}.
-
-Provide:
-1. Folder structure
-2. One-line purpose of each important folder
-3. Dependency file using {{BUILD_TOOL}}
-4. .gitignore entries
-
-Keep the structure simple and maintainable.
-```
-
-### P-UI-02: Environment Configuration
-
-```text
-Create a configuration manager in {{LANGUAGE}} using
-{{CONFIG_APPROACH}}.
-
-Requirements:
-- Support these environments: {{ENVIRONMENTS}}
-- Allow environment/configuration overrides through
-  system properties, CLI arguments, or environment variables.
-- Fail clearly when a required value is missing.
-- Keep configuration thread-safe.
-- Never log passwords, tokens, or other secrets.
-
-Also provide sample configuration files.
-```
-
-### P-UI-03: Browser / Driver Factory
-
-```text
-Create a thread-safe browser/driver factory for
-{{TOOL}} using {{LANGUAGE}}.
-
-Support:
-- Browsers: {{BROWSERS}}
-- Execution mode: {{EXECUTION_MODE}}
-- Headless mode
-- Window size
-- Download directory
-- Browser capabilities/options
-- Configuration-driven settings
-- Setup and teardown for {{TEST_RUNNER}}
-
-Ensure the driver is safely closed after the test.
-```
-
----
-
-# 4.2 Page Objects and Tests
-
-### P-UI-04: Base Page
-
-```text
-Create a BasePage class in {{LANGUAGE}} for {{TOOL}}.
-
-Include reusable methods for:
-- Click
-- Type
-- Select
-- Hover
-- Scroll to element
-- Get text
-- Check if element is displayed
-- Upload file
-- Switch frame
-- Switch window
-- JavaScript click fallback
-
-Requirements:
-- Use configurable explicit waits or the tool's auto-waiting.
-- Do not use fixed sleeps.
-- Log important actions.
-- Capture a screenshot when an action fails.
-```
-
-### P-UI-05: Create Page Object
-
-```text
-Create a page object for the "{{PAGE_NAME}}" page using
-{{FRAMEWORK_TYPE}}, {{LANGUAGE}}, and {{TOOL}}.
-
-Elements:
-{{LIST_OF_ELEMENTS_WITH_HINTS}}
-
-Example:
-username input [id=user]
-login button [text=Sign in]
-
-Rules:
-- Keep locators inside the page object.
-- Prefer stable locators.
-- Public methods should represent user actions.
-- Do not expose unnecessary element getters.
-- Do not put assertions inside the page object.
-- Return the next page object when navigation occurs.
-```
-
-### P-UI-06: Convert Manual Test to Automation
-
-```text
-Convert the following manual test into an automated test using:
-
-Tool: {{TOOL}}
-Language: {{LANGUAGE}}
-Test runner: {{TEST_RUNNER}}
-Existing page objects: {{PAGE_OBJECT_NAMES}}
-
-Manual test:
-{{PASTE_STEPS_AND_EXPECTED_RESULTS}}
-
-Rules:
-- One clear objective per test.
-- Assertions only in the test layer.
-- Use a clear test name.
-- Handle setup/cleanup through hooks.
-- Do not depend on another test.
-- Do not use fixed sleeps.
-- Use the existing page objects instead of duplicating page logic.
-```
-
-### P-UI-07: BDD Feature and Step Definitions
-
-```text
-For this scenario:
-
-{{SCENARIO_DESCRIPTION}}
-
-Create:
-1. Gherkin feature file
-2. Background where useful
-3. Scenario / Scenario Outline
-4. Examples where useful
-5. Tags
-6. Matching step definitions in {{LANGUAGE}}
-7. Hooks for setup, teardown, and screenshot on failure
-
-Use Cucumber with {{TOOL}}.
-
-Rules:
-- Steps should use business-friendly language.
-- Keep step definitions reusable.
-- Step definitions should call page objects.
-- Do not put detailed UI logic inside feature files.
-```
-
----
-
-# 4.3 Data-Driven Testing
-
-### P-UI-08: Data-Driven Testing
-
-```text
-Implement data-driven testing in {{LANGUAGE}} using
-{{TEST_RUNNER}} and {{DATA_DRIVEN}}.
-
-Create:
-1. Data reader utility
-2. Sample data file
-3. Automated test using the data
-4. Positive, negative, and boundary examples
-5. Test/report names that identify the data row
-6. Handling for empty or malformed data
-7. Environment-specific data support where required
-
-Keep test data separate from test logic.
-```
-
-### P-UI-09: Test Data Generator
-
-```text
-Create a test data factory in {{LANGUAGE}} for:
-
-{{ENTITY}}
-
-Example:
-User, Address, Order
-
-Use a builder pattern and Faker or an equivalent library.
-
-Support:
-- Valid data
-- Invalid data
-- Boundary data
-- Unique values where required
-- Fixed seed for repeatable test data
-```
-
----
-
-# 4.4 Stability and Synchronization
-
-### P-UI-10: Fix a Flaky Test
-
-```text
-Act as a Senior SDET.
-
-This UI test is flaky and fails approximately
-{{FAIL_RATE}}% of the time.
-
-Test code:
-{{PASTE_CODE}}
-
-Error/log:
-{{PASTE_ERROR}}
-
-Analyze possible causes such as:
-- Timing
-- Locator instability
-- Incorrect application state
-- Test data
-- Environment issues
-- Animation
-- Stale elements
-- Parallel execution conflicts
-
-Rank the likely causes from highest to lowest.
-
-Then provide:
-1. Root cause explanation
-2. Corrected code
-3. Explanation of the changes
-
-Do not use fixed sleeps as the solution.
-```
-
-### P-UI-11: Improve Locators
-
-```text
-Review these UI locators and suggest more stable alternatives.
-
-Preferred order:
-data-testid > id > accessible role/name > CSS > XPath
-
-Locators:
-{{PASTE_LOCATORS}}
-
-DOM/HTML:
-{{PASTE_DOM}}
-
-For each locator:
-1. Explain why the current locator may be unstable.
-2. Suggest a better locator.
-3. Explain why the new locator is better.
-4. If no stable locator exists, suggest which test-friendly
-   attribute should be requested from developers.
-```
-
-### P-UI-12: Retry Mechanism
-
-```text
-Implement a retry-on-failure mechanism for
-{{TEST_RUNNER}} using {{LANGUAGE}}.
-
-Requirements:
-- Retry count: {{RETRY_COUNT}}
-- Retry only tests marked as retryable.
-- Log every retry attempt.
-- Show retried tests clearly in {{REPORTING}}.
-- Do not retry every failure automatically.
-
-Add a warning that retries must not be used to hide real defects.
-```
-
----
-
-# 4.5 Reporting, Logging, and Evidence
-
-### P-UI-13: Reporting Integration
-
-```text
-Integrate {{REPORTING}} into my
-{{TOOL}} + {{LANGUAGE}} + {{TEST_RUNNER}} framework.
-
-Include:
-- Required dependencies
-- Listener/hook setup
-- Step/action logging
-- Screenshot attachment on failure
-- Browser/environment information
-- Report generation command
-- Report opening command
-
-Show a simple example of the final report structure.
-```
-
-### P-UI-14: Screenshot, Video, and Trace on Failure
-
-```text
-Add automatic evidence capture for test failures.
-
-Framework:
-{{TOOL}} + {{LANGUAGE}}
-
-Capture:
-- Screenshot
-- Video if supported
-- Trace if supported
-
-Attach evidence to:
-{{REPORTING}}
-
-File names should contain:
-- Test name
-- Timestamp
-- Browser
-
-Also provide a way to clean up artifacts older than
-{{DAYS}} days.
-```
-
----
-
-# 4.6 Execution and CI/CD
-
-### P-UI-15: Parallel and Cross-Browser Execution
-
-```text
-Configure parallel execution for:
-
-Tool: {{TOOL}}
-Language: {{LANGUAGE}}
-Test runner: {{TEST_RUNNER}}
-Browsers: {{BROWSERS}}
-Threads: {{THREAD_COUNT}}
-
-Requirements:
-- Thread-safe driver handling
-- No shared mutable state
-- Independent test data
-- No test order dependency
-
-Provide commands for:
-1. Running all tests
-2. Running one browser
-3. Running one tag/suite
-```
-
-### P-UI-16: Grid / Docker / Cloud Execution
-
-```text
-Provide a Docker or equivalent setup for running
-{{TOOL}} tests using:
-
-Execution mode: {{EXECUTION_MODE}}
-Browsers: {{BROWSERS}}
-
-Include:
-- Docker/remote configuration
-- Remote URL
-- Browser capabilities
-- Credentials through environment variables
-- Required framework changes
-- Scaling approach
-- Common troubleshooting steps
-```
-
-### P-UI-17: CI/CD Pipeline
-
-```text
-Create a {{CICD}} pipeline for my
-{{TOOL}} / {{LANGUAGE}} UI automation framework.
-
-Pipeline stages:
-1. Checkout
-2. Dependency installation/cache
-3. Lint/build where applicable
-4. Smoke tests
-5. Regression tests
-6. Environment/browser/tag parameters
-7. Report generation
-8. Screenshot/artifact storage
-9. Notifications through {{NOTIFICATION_CHANNEL}}
-
-Also include:
-- Scheduled nightly execution
-- Rules for when the pipeline should fail
-```
-
----
-
-# 4.7 Advanced Quality Checks
-
-### P-UI-18: Accessibility Checks
-
-```text
-Add automated accessibility testing using axe-core
-or an equivalent tool.
-
-Framework:
-{{TOOL}} + {{LANGUAGE}}
-
-Requirements:
-- Reusable accessibility helper
-- WCAG level: {{WCAG_LEVEL}}
-- Violation reporting in {{REPORTING}}
-- Ability to exclude known issues
-- Required justification for every exclusion
-```
-
-### P-UI-19: Visual Regression
-
-```text
-Implement visual regression testing for my
-{{TOOL}} framework.
-
-Include:
-- Baseline screenshot creation
-- Comparison
-- Tolerance: {{TOLERANCE}}%
-- Masking of dynamic areas
-- Diff image on failure
-- Process for reviewing and approving new baselines
-
-Explain how the team should maintain visual baselines.
-```
-
-### P-UI-20: Reuse Login Session
-
-```text
-Implement a way to avoid repeating UI login for every test
-using {{TOOL}} and {{LANGUAGE}}.
-
-Preferred approach:
-- Authenticate through API or stored session/cookies.
-- Reuse the authenticated state.
-- Refresh the state when it expires.
-- Keep one dedicated test that verifies the real UI login.
-
-Explain where the authentication state should be stored
-and how it should be protected.
-```
-
----
-
-# 4.8 Review, Refactor, Migrate, and Document
-
-### P-UI-21: Automation Code Review
-
-```text
-Act as a strict Senior QA Automation code reviewer.
-
-Review this {{LANGUAGE}} / {{TOOL}} automation code for:
-
-- Readability
-- Locator quality
-- Wait strategy
-- Duplicate code
-- SOLID violations
-- Assertion quality
-- Hardcoded data
-- Thread safety
-- Error handling
-- Naming
-- Maintainability
-
-Return:
-
-| Issue | Severity | Location | Recommended Fix |
-
-Severity:
-High / Medium / Low
-
-Then provide the refactored code.
-
-Code:
-{{PASTE_CODE}}
-```
-
-### P-UI-22: Framework Migration
-
-```text
-Create a migration plan from:
-
-Current tool: {{OLD_TOOL}}
-Current language: {{OLD_LANGUAGE}}
-
-To:
-
-New tool: {{NEW_TOOL}}
-New language: {{NEW_LANGUAGE}}
-
-Include:
-1. Tool/concept mapping
-2. Phased migration approach
-3. Coexistence strategy
-4. Risks
-5. Estimated effort by phase
-6. Sample converted code
-
-Sample code:
-{{PASTE_SAMPLE}}
-```
-
-### P-UI-23: README and Onboarding Guide
-
-```text
-Create a beginner-friendly README for this UI automation framework.
-
-Framework summary/structure:
-{{PASTE_STRUCTURE_OR_SUMMARY}}
-
-Include:
-- Overview
-- Prerequisites
-- Setup
-- Folder structure
-- How to run all tests
-- How to run specific tests
-- How to select browser/environment
-- How to add a new page
-- How to add a new test
-- How to add test data
-- Reporting
-- CI/CD
-- Coding conventions
-- FAQs
-- Troubleshooting
-
-Keep the explanation easy for a new QE/SDET team member to follow.
-```
-
----
-
-# 5. Filled Example
-
-The following example shows how the Master Prompt can be filled for a typical Selenium + Java framework.
-
-```text
-ROLE
-
-Act as a Senior QA Automation Engineer / Architect experienced in building
-scalable, maintainable UI automation frameworks.
-
-GOAL
-
-Design and generate a complete UI automation framework.
-
-PROJECT DETAILS
-
-- Application type: Web
-- Application name: Banking Portal
-- Framework design: Page Object Model with BDD
-- Automation tool: Selenium WebDriver
-- Programming language: Java 17
-- Test runner: TestNG + Cucumber
-- Build tool: Maven
-- Data-driven approach: Excel + Cucumber Examples
-- Test data approach: Static Excel + Faker
-- Reporting: Allure
-- Logging: Log4j2
-- Browsers: Chrome, Firefox, Edge
-- Execution mode: Local + Selenium Grid
-- Parallel execution: Yes - 4 threads
-- Environments: QA, Staging
-- CI/CD: Jenkins
-- Additional features:
-  Screenshot on failure, retry once, API login shortcut
-- Configuration approach: .properties
-- Coding standards: Google Java Style
-- Sample scenarios:
-  Login, fund transfer, statement download
-- Constraints: Open-source libraries only
-
-Generate the framework using the instructions from the Master Prompt.
-```
-
----
-
-# 6. Review Checklist for AI-Generated UI Framework Code
-
-Before committing AI-generated automation code, verify the following:
-
-### Framework
-
-- [ ] Project builds successfully.
-- [ ] Tests run using the documented commands.
-- [ ] Folder structure is clear and maintainable.
-- [ ] Configuration is separated from test code.
-- [ ] No unnecessary dependencies are included.
-
-### Locators and Waits
-
-- [ ] Locators are stable.
-- [ ] Locators are centralized in page objects.
-- [ ] No hard sleeps such as `Thread.sleep`.
-- [ ] Explicit waits or tool-supported auto-waiting are used.
-- [ ] XPath is not used when a more stable locator is available.
-
-### Tests
-
-- [ ] Assertions are in the test layer.
-- [ ] Tests are independent.
-- [ ] Tests do not depend on execution order.
-- [ ] Test data is separated from test logic.
-- [ ] Test names clearly explain the behavior being tested.
-
-### Parallel Execution
-
-- [ ] Driver handling is thread-safe.
-- [ ] Tests do not share mutable state.
-- [ ] Test data does not cause parallel conflicts.
-- [ ] Parallel execution has been tested.
-
-### Failure Evidence
-
-- [ ] Screenshots are captured on failure.
-- [ ] Logs are available.
-- [ ] Video/trace is captured if required.
-- [ ] Evidence is attached to the test report.
-
-### Security
-
-- [ ] No credentials are hardcoded.
-- [ ] No real customer data is committed.
-- [ ] Secrets are stored securely.
-- [ ] Secrets are not printed in logs.
-
-### CI/CD
-
-- [ ] CI pipeline runs successfully.
-- [ ] Smoke and regression execution are supported.
-- [ ] Reports are published.
-- [ ] Test artifacts are archived.
-- [ ] Build failure rules are defined.
-
-### Documentation
-
-- [ ] README is available.
-- [ ] Setup instructions work on a clean machine.
-- [ ] Run commands are documented.
-- [ ] New team members can understand how to add a page/test.
-- [ ] Troubleshooting information is included.
-
----
-
-# 7. Prompting Tips
-
-| Do | Don't |
+| If you want to… | Use this |
 |---|---|
-| Give the AI the role, task, inputs, and expected output | Give a vague request such as "create automation framework" |
-| Provide DOM/HTML when asking about locators | Ask the AI to fix a locator without giving the DOM |
-| Provide the error/log when fixing a flaky test | Ask "why is this test failing?" without evidence |
-| Ask the AI to list assumptions | Expect the AI to know project-specific standards |
-| Build the framework step by step when the project is complex | Generate a huge framework and merge it without review |
-| Specify the tool and language versions | Allow outdated APIs or dependencies without checking |
-| Review and run generated code | Accept generated code without validation |
+| Create a new automation framework | [Framework Master Prompt](#1-build-a-new-framework) |
+| Add a page or automate a manual test | [P-04 Page Object](#p-04-create-a-page-object), [P-05 Manual Test to Automation](#p-05-convert-a-manual-test-to-automation) |
+| Fix an unreliable test | [P-07 Fix a Flaky Test](#p-07-fix-a-flaky-test) |
+| Improve a locator | [P-08 Improve Locators](#p-08-improve-locators) |
+| Add reporting or failure screenshots | [P-09 Reporting and Failure Evidence](#p-09-add-reporting-and-failure-evidence) |
+| Set up CI/CD | [P-12 CI/CD Pipeline](#p-12-create-a-cicd-pipeline) |
+| Review code before merging | [P-14 Code Review](#p-14-review-and-refactor-code) |
+| Write onboarding documentation | [P-15 README](#p-15-create-a-beginner-friendly-readme) |
+
+## Quick start: use any prompt in 4 steps
+
+1. **Choose a task** from the table above.
+2. **Fill in the placeholders** such as `{{TOOL}}` and `{{LANGUAGE}}`. Replace every placeholder that applies to your task.
+3. **Add the Standard Rules** from the next section to the end of your prompt.
+4. **Run, review, and test** the AI-generated code before using or merging it.
+
+If a field does not apply, enter `N/A`. If you do not know an optional setting, ask the AI to recommend a sensible default and clearly state its assumption.
+
+### Important safety rules
+
+- Never paste real passwords, access tokens, customer information, or confidential internal URLs. Use dummy examples instead.
+- Do not assume generated code is correct. Build it, run it, inspect the results, and review it before merging.
+- Never commit credentials, authentication state, or other secrets to source control.
 
 ---
 
-# 8. Recommended Usage Flow
+## 1. Set up your project details
 
-For a new UI automation framework, use the prompts in roughly this order:
+Fill this in once, then reuse the values across prompts. Most tasks only need the details relevant to that task.
+
+| Placeholder | What it means | Example |
+|---|---|---|
+| `{{APP}}` | Application type/name | Web application, Banking Portal |
+| `{{TOOL}}` | Automation tool | Selenium, Playwright, Cypress |
+| `{{LANGUAGE}}` | Programming language/version | Java 17, TypeScript, Python 3.12 |
+| `{{RUNNER}}` | Test runner or BDD tool | TestNG, pytest, Playwright Test, Cucumber |
+| `{{BUILD}}` | Build/package tool | Maven, npm, pip |
+| `{{DESIGN}}` | Framework design | Page Object Model (POM), POM + BDD |
+| `{{BROWSERS}}` | Browsers to support | Chrome, Firefox, Edge |
+| `{{EXECUTION}}` | Where tests will run | Local machine, Docker, Grid, Cloud |
+| `{{REPORTING}}` | Reporting tool | Allure, Extent, HTML |
+| `{{CICD}}` | Pipeline tool | Jenkins, GitHub Actions |
+| `{{SCENARIOS}}` | Two or three example scenarios | Login, search, checkout |
+| `{{CONSTRAINTS}}` | Mandatory restrictions | Open-source libraries only |
+| `{{OPTIONAL_EXTRAS}}` | Any extra project requirements | Excel data, parallel threads, environments, logging |
+
+Optional details might include the data source (Excel/CSV/JSON), number of parallel threads, environments (QA/Staging), configuration format, logging library, coding standards, retries, or API-based login. Include only the details that matter to your project.
+
+## 2. Standard Rules — add these to every prompt
+
+Copy this block and paste it at the end of the prompt you choose.
 
 ```text
-1. P-UI-01
-   Project Structure
-        ↓
-2. P-UI-02
-   Configuration
-        ↓
-3. P-UI-03
-   Browser / Driver Setup
-        ↓
-4. P-UI-04
-   Base Page
-        ↓
-5. P-UI-05
-   Page Objects
-        ↓
-6. P-UI-08
-   Data-Driven Testing
-        ↓
-7. P-UI-13
-   Reporting
-        ↓
-8. P-UI-14
-   Failure Evidence
-        ↓
-9. P-UI-15
-   Parallel / Cross-Browser
-        ↓
-10. P-UI-17
-    CI/CD
-        ↓
-11. P-UI-21
-    Code Review
-        ↓
-12. P-UI-23
-    README / Onboarding
+STANDARD RULES
+- Keep tests independent; do not rely on execution order.
+- Store locators in page objects; keep assertions in tests.
+- Prefer locators in this order: data-testid > id > role/accessible name > CSS > XPath (last resort).
+- Do not use fixed sleeps. Use explicit waits or the tool's auto-waiting.
+- Read URLs and secrets from configuration/environment variables or a vault. Never hardcode or log secrets.
+- Make driver/browser handling safe for parallel execution.
+- Keep the solution simple; avoid unnecessary dependencies and abstractions.
+- Do not invent application-specific details. List important assumptions first (maximum 5 lines), then continue.
+- Show the file path before each code file and provide complete, runnable code.
+- Mark project-specific changes with TODO.
 ```
-
-For a completely new framework, the **Master Prompt** can be used first and the Micro Prompts can then be used for individual enhancements or maintenance tasks.
 
 ---
 
-# 9. Change Log
+## 3. Build a new framework
 
-| Version | Date | Author | Change |
-|---|---|---|---|
-| 1.0 | 2026-10-08 | QE Automation | Initial release |
+### Framework Master Prompt
+
+Use this when starting a new UI automation framework. The AI will deliver one phase at a time, so you can review and run each phase before asking it to continue.
+
+Copy the prompt below, replace the placeholders, and add the Standard Rules.
+
+```text
+ROLE
+Act as a Senior QA Automation Architect.
+
+GOAL
+Build a UI automation framework in phases. Complete only ONE phase at a time.
+After each phase, stop and wait until I reply "continue".
+
+PROJECT DETAILS
+- Application: {{APP}}
+- Automation tool / language: {{TOOL}} / {{LANGUAGE}}
+- Test runner / build tool: {{RUNNER}} / {{BUILD}}
+- Framework design: {{DESIGN}}
+- Browsers / execution: {{BROWSERS}} / {{EXECUTION}}
+- Reporting: {{REPORTING}}
+- CI/CD: {{CICD}}
+- Sample scenarios: {{SCENARIOS}}
+- Constraints: {{CONSTRAINTS}}
+- Optional extras: {{OPTIONAL_EXTRAS}}
+
+PHASES
+1. Foundation
+   Explain the architecture briefly with a simple text diagram. Provide the
+   folder structure, dependencies, configuration (including CLI/environment
+   overrides), driver/browser factory, BasePage, and BaseTest.
+
+2. Pages and Tests
+   Create sample page objects and tests for the listed scenarios. Add a data
+   reader and sample data file if a data source was requested.
+
+3. Quality and Evidence
+   Add logging, reporting, and screenshots on failure (plus video/trace if
+   supported). Add retries only if requested; retries must be opt-in per test
+   and must not hide real defects.
+
+4. Pipeline and Documentation
+   Create the CI/CD pipeline for smoke and regression tests, including
+   environment/browser/tag parameters, report and artifact publishing, and
+   clear failure rules. Write a short README covering setup, run commands,
+   adding pages/tests, and troubleshooting.
+
+At the end of each phase, include "Next step / Known limitations" in no more
+than 5 lines.
+
+[Paste STANDARD RULES here]
+```
+
+---
+
+## 4. Prompts for Everyday Tasks
+
+Use these prompts to add, improve, troubleshoot, and maintain UI automation in an **existing automation framework**.
+
+For each task, describe the outcome you want. The AI should inspect the existing project, discover relevant implementation details, and reuse available components instead of asking you to supply information it can find itself.
+
+### Standard Rules — Apply to Every Prompt
+
+Add these rules at the end of each prompt.
+
+```text
+STANDARD RULES
+- Inspect the existing framework, relevant files, dependencies, and coding
+  conventions before making changes.
+- Discover technical details from the project and available tools instead
+  of asking the user to provide information that can be found.
+- Reuse existing components and patterns. Do not rebuild the framework,
+  duplicate utilities, or introduce unnecessary dependencies.
+- Make focused changes and preserve unrelated functionality.
+- Do not invent application details or claim an inspection, change, or test
+  was completed if it was not.
+- If required information cannot be discovered, ask only for the minimum
+  information needed to proceed.
+- Provide the complete code for created or modified files and show their paths.
+- Run relevant validation checks when possible. Clearly report passed,
+  failed, and unexecuted checks.
+- Protect credentials, authentication state, and sensitive test data.
+- Summarize the changes, validation results, assumptions, and remaining
+  actions required from the user.
+```
+
+---
+
+### Setup
+
+#### P-01: Create or Update Configuration
+
+```text
+Review the existing configuration management in this automation framework.
+
+Task:
+{{CONFIGURATION_NEED}}
+
+Inspect how the project currently handles environments, configuration files,
+overrides, and required settings.
+
+Implement the requested configuration change by extending the existing
+approach. Support CLI arguments, system properties, or environment variables
+where appropriate for the current framework.
+
+Handle missing required values clearly, preserve thread safety where needed,
+and protect sensitive configuration values.
+
+Provide the complete code for modified or new files, explain how the
+configuration works, and show how to run or validate it.
+```
+
+#### P-02: Create or Update Driver / Browser Factory
+
+```text
+Review the existing browser/driver factory and test lifecycle.
+
+Task:
+{{DRIVER_OR_BROWSER_NEED}}
+
+Inspect the current framework to identify supported browsers, execution modes,
+driver setup, configuration, and test runner integration.
+
+Implement the requested change by extending the existing factory and
+lifecycle management. Preserve current capabilities, support headless or
+remote execution where required, and ensure browser resources are released
+safely even when a test fails.
+
+Avoid creating a duplicate factory or changing unrelated tests.
+
+Provide the complete code, required configuration changes, run instructions,
+and validation results.
+```
+
+#### P-03: Create or Update Reusable Base Page
+
+```text
+Review the existing BasePage or equivalent reusable interaction layer.
+
+Task:
+{{REUSABLE_ACTION_NEED}}
+
+Inspect the current framework to identify existing actions, wait strategies,
+logging, error handling, screenshot capture, and frame/window management.
+
+Implement the requested functionality using the existing patterns. Check
+whether a reusable action already exists before adding another one.
+
+Use appropriate waits and error handling. Introduce a JavaScript interaction
+fallback only when justified, not as a default workaround.
+
+Provide the complete code, explain how page objects should use it, and report
+the validation results.
+```
+
+---
+
+### Create Tests
+
+#### P-04: Create or Update a Page Object
+
+```text
+Create or update the Page Object for the "{{PAGE_NAME}}" page in the
+existing automation framework.
+
+Page details:
+- URL: {{PAGE_URL_OR_NA}}
+- Task / expected user behavior: {{TASK_OR_EXPECTED_BEHAVIOR}}
+
+Instructions:
+1. Inspect the existing framework and follow its page-object conventions.
+2. Use available browser automation tools to inspect the page and identify
+   relevant interactive elements, labels, inputs, buttons, and page structure.
+3. Identify stable locators from the actual page. Prefer stable test attributes,
+   IDs, accessible roles/names, CSS, and XPath as a last resort.
+4. Create reusable methods representing user actions. Keep locators in the
+   Page Object and assertions in tests, following project conventions.
+5. Reuse existing utilities and avoid unnecessary getters, abstractions,
+   dependencies, or duplicate methods.
+6. If an action navigates to another page, return the next Page Object only
+   after confirming navigation has completed, where appropriate.
+7. Validate locator uniqueness and behavior where possible. Do not invent
+   elements or claim validation was performed if it was not.
+8. If browser inspection is unavailable, use available DOM/HTML or request
+   the minimum information needed to identify the elements accurately.
+
+Provide the complete code, expected file path, assumptions, and validation
+results.
+```
+
+#### P-05: Convert a Manual Test to Automation
+
+```text
+Convert the following manual test into an automated test using the existing
+automation framework.
+
+Manual test / scenario:
+{{MANUAL_TEST_OR_SCENARIO}}
+
+Expected result, if not already specified:
+{{EXPECTED_RESULT_OR_NA}}
+
+Relevant URLs(if not covered in the test case):
+{{URLS}}
+
+Instructions:
+1. Inspect the existing test structure, page objects, setup/cleanup hooks,
+   test-data handling, and naming conventions.
+2. Reuse existing components and identify any missing page actions.
+3. Create a clearly named automated test with one primary objective.
+4. Follow existing assertion, test-data, and reporting conventions.
+5. If the framework uses BDD, follow its existing feature-file and
+   step-definition patterns. Use Scenario Outline and tags where appropriate.
+6. Identify missing requirements or expected results instead of inventing
+   business rules.
+
+Provide the complete code, changed file paths, and instructions to run the test.
+```
+
+#### P-06: Create or Update Data-Driven Tests
+
+```text
+Review the existing framework's test-data management and data-driven testing
+approach.
+
+Test or scenario:
+{{TEST_OR_SCENARIO}}
+
+Task:
+{{DATA_COVERAGE_NEED}}
+
+Inspect the existing data sources, readers, test runner, and reporting
+conventions.
+
+Extend the current approach to cover relevant positive, negative, and boundary
+cases. Create or update data files and readers only where needed.
+
+Handle missing or malformed data clearly. Make test results traceable to the
+corresponding data case. If generated test data is required, use a repeatable
+approach consistent with the existing framework.
+
+Provide the complete code, sample data, changed file paths, and run instructions.
+```
+
+---
+
+### Fix Test Stability and Locators
+
+#### P-07: Fix a Flaky Test
+
+Use this prompt when a test passes sometimes and fails at other times.
+
+```text
+Investigate and fix an intermittently failing test in the existing framework.
+
+Test name or location:
+{{TEST_NAME_OR_PATH}}
+
+Observed failure, error, or logs, if available:
+{{ERROR_OR_LOGS_OR_NA}}
+
+Inspect the test, related page objects, waits, application state, test data,
+browser/environment, animations, stale elements, and parallel execution
+where relevant.
+
+Reproduce the failure if the environment permits. Identify and rank likely
+causes, distinguishing confirmed evidence from hypotheses.
+
+Fix the root cause where possible. Do not use fixed sleeps, broad exception
+handling, or retries to hide the failure.
+
+Provide the corrected code, explain what changed, and report whether the
+failure was reproduced and which validation checks were completed.
+If the cause cannot be confirmed, explain the evidence needed next.
+```
+
+#### P-08: Improve Locators
+
+```text
+Review locator stability in the existing automation framework.
+
+Page, test, or area to review:
+{{PAGE_OR_TEST_OR_NA}}
+
+Inspect the existing page objects and use available browser tools to examine
+the current DOM and relevant elements.
+
+Identify fragile locators and replace them with stable alternatives grounded
+in the actual page structure. Follow project conventions and prefer stable
+test attributes, IDs, accessible roles/names, CSS, and XPath as a last resort.
+
+Validate locator uniqueness where possible. Explain why each changed locator
+is more reliable.
+
+If no reliable locator can be identified, recommend the specific DOM or
+test-attribute change needed from the development team.
+
+Provide the complete changed code and validation results. Do not invent
+elements or claim a locator was validated if it was not.
+```
+
+---
+
+### Reporting, Execution, and CI/CD
+
+#### P-09: Add or Update Reporting and Failure Evidence
+
+```text
+Review the existing reporting and failure-evidence implementation.
+
+Task:
+{{REPORTING_NEED}}
+
+Inspect the current reporting tool, test listeners/hooks, logging, screenshot
+capture, and supported video/trace capabilities.
+
+Extend the existing setup to meet the requirement. Attach failure evidence
+to reports where supported, follow existing naming conventions, and implement
+retention or cleanup only when needed.
+
+Avoid introducing a second reporting system unless there is a clear reason.
+
+Provide the complete code, configuration changes, instructions to generate
+and view reports, and validation results.
+```
+
+#### P-10: Add an Optional Retry Mechanism
+
+Use retries only when justified. They must not hide genuine defects.
+
+```text
+Review the existing test runner and determine whether retry support already
+exists.
+
+Requirement:
+{{RETRY_NEED}}
+
+If retries are justified, extend the current mechanism or implement an
+opt-in solution consistent with the framework.
+
+Retry only explicitly eligible tests, using a configurable retry limit.
+Log each attempt and identify retried tests in the report where supported.
+
+Do not use retries to replace root-cause investigation or conceal genuine
+application defects. If retries are unsuitable, explain why and recommend
+an alternative.
+
+Provide the complete code, instructions to enable retries, and validation
+results.
+```
+
+#### P-11: Set Up Parallel and Cross-Browser Execution
+
+```text
+Review the existing test execution configuration and parallel-safety.
+
+Task:
+{{EXECUTION_REQUIREMENT}}
+
+Inspect the current test runner, supported browsers, driver lifecycle,
+shared state, test data, and any existing Grid, Docker, or cloud setup.
+
+Extend the current configuration to support the requested execution modes.
+Avoid shared mutable state, resource conflicts, and dependencies between tests.
+
+Check whether the existing tests are safe for parallel execution before
+enabling it broadly. Do not assume that increasing thread count is sufficient.
+
+Provide the complete code and configuration changes, commands for the
+required execution modes, troubleshooting guidance, and validation results.
+```
+
+#### P-12: Create or Update a CI/CD Pipeline
+
+```text
+Review the existing CI/CD pipeline and automation framework's run commands.
+
+Task:
+{{PIPELINE_REQUIREMENT}}
+
+Identify the current pipeline platform, build process, test commands,
+environment configuration, reporting, and artifact handling.
+
+Extend the existing pipeline to meet the requirement. Include relevant steps
+such as dependency caching, build/lint, smoke and regression execution,
+browser/environment/tag parameters, report publishing, failure evidence,
+scheduling, and notifications where needed.
+
+Use the project's existing secret-management approach. Define clear failure
+conditions and preserve unrelated pipeline behavior.
+
+Provide the complete pipeline changes, explain how to trigger the workflow,
+and report validation results. Do not claim the pipeline executed unless
+it actually ran.
+```
+
+#### P-13: Reuse a Login Session
+
+```text
+Review the existing authentication and session-management approach in this
+automation framework.
+
+Task:
+{{SESSION_REUSE_REQUIREMENT}}
+
+Determine whether repeated UI login can be reduced safely using a supported
+API login or the automation tool's session-state capabilities.
+
+Reuse existing authentication utilities where possible. Preserve a dedicated
+test for the actual UI login flow. Handle session expiry and refresh where
+required by the application.
+
+Protect authentication state and credentials. Never commit secrets or
+session files to source control.
+
+If the application or environment does not support a safe approach, explain
+the limitation before implementing an assumption.
+
+Provide the complete code, configuration changes, instructions, and
+validation results.
+```
+
+---
+
+### Review and Document Your Framework
+
+#### P-14: Review and Refactor Code
+
+```text
+Act as a Senior QA Automation Engineer and review the following code or change
+in the context of the existing framework.
+
+File, class, test, or change:
+{{CODE_LOCATION_OR_CHANGE}}
+
+Inspect the relevant implementation and project conventions before
+recommending changes.
+
+Review applicable areas such as locator stability, waits, assertions,
+duplication, hardcoded data, configuration, thread safety, error handling,
+naming, maintainability, and security.
+
+First provide a table with:
+Issue | Severity (High/Medium/Low) | File/Location | Recommended Fix
+
+Then provide a focused refactor where appropriate. Preserve existing
+behavior unless a change is necessary, and explain any behavior changes.
+
+Do not refactor unrelated files or introduce unnecessary abstractions.
+Provide the complete changed code and validation results.
+```
+
+#### P-15: Create or Update a Beginner-Friendly README
+
+```text
+Review the existing README, project structure, configuration, and test
+execution commands.
+
+Documentation task:
+{{DOCUMENTATION_REQUIREMENT}}
+
+Update the existing documentation rather than creating a duplicate guide.
+
+Document the topics relevant to the project, such as prerequisites, setup,
+folder structure, commands to run tests by browser/environment/tag, adding
+page objects and tests, managing test data, reporting, CI/CD, coding
+conventions, and troubleshooting.
+
+Verify instructions against the actual project wherever possible. Clearly
+identify anything that could not be verified instead of inventing commands
+or configuration details.
+
+Provide the complete updated README, its file path, and a summary of changes.
+```
+
+---
+
+### Optional Prompts — Use Only When Needed
+
+#### P-16: Add Accessibility Checks
+
+```text
+Review the existing automation framework and determine how accessibility
+checks can be added consistently.
+
+Pages or flows:
+{{PAGES_OR_FLOWS}}
+
+Task:
+{{ACCESSIBILITY_REQUIREMENT}}
+
+Inspect the existing tool, language, test runner, reporting, and dependencies.
+Reuse the current setup and integrate axe-core or a compatible alternative
+where appropriate.
+
+Report accessibility violations clearly and support documented exclusions
+only when each exclusion has a written justification. Do not silently
+suppress violations.
+
+Provide the complete code, required configuration, instructions to run the
+checks, and validation results.
+```
+
+#### P-17: Add Visual Regression Testing
+
+```text
+Review the existing framework for visual comparison or screenshot-testing
+capabilities.
+
+Pages or flows:
+{{PAGES_OR_FLOWS}}
+
+Task:
+{{VISUAL_REGRESSION_REQUIREMENT}}
+
+Extend the existing setup or recommend a compatible approach if the required
+capability is missing.
+
+Where relevant, implement baseline creation, comparison thresholds, masking
+of dynamic content, failure diff images, and a controlled process for
+reviewing and approving baseline updates.
+
+Do not automatically approve changed baselines. Explain setup requirements,
+the files changed, how to run the checks, and the validation results.
+```
+
+#### P-18: Plan or Execute a Framework Migration
+
+```text
+Review the existing automation framework and assess the migration request.
+
+Migration goal:
+{{MIGRATION_GOAL}}
+
+Inspect the current tool, language, framework architecture, dependencies,
+test coverage, page objects, test-data handling, reporting, and CI/CD.
+
+If the target tool or language has already been decided, use that target.
+Otherwise, recommend suitable options with their trade-offs and ask for a
+decision only if it is necessary to proceed.
+
+Provide a phased migration plan covering reusable components, required
+changes, compatibility, risks, coexistence of old and new implementations,
+and estimated effort.
+
+If implementation is requested, migrate one representative example first,
+validate it, and then recommend the next step.
+
+Do not assume that every component must be rewritten. Identify what can
+be reused and explain any limitations.
+```
+
+---
+
+### Recommended Usage
+
+1. Select the prompt that matches your task.
+2. Describe the outcome you want. Provide only details that the AI cannot discover.
+3. Allow the AI to inspect the existing code and application using available tools.
+4. Review the changes and validation results before merging.
+5. Ask for clarification only when necessary information is genuinely unavailable.
+
+## 5. Example: project details already filled in
+
+Use this as a reference for how to fill in the project details.
+
+```text
+ROLE
+Act as a Senior QA Automation Architect.
+
+GOAL
+Build a UI automation framework in phases. Complete one phase at a time and
+wait for me to reply "continue" before moving on.
+
+PROJECT DETAILS
+- Application: Web, Banking Portal
+- Automation tool / language: Selenium WebDriver / Java 17
+- Test runner / build tool: TestNG + Cucumber / Maven
+- Framework design: POM + BDD
+- Browsers / execution: Chrome, Firefox, Edge / Local + Selenium Grid
+- Reporting: Allure
+- CI/CD: Jenkins
+- Sample scenarios: Login, fund transfer, statement download
+- Constraints: Open-source libraries only
+- Optional extras: Excel data, 4 parallel threads, QA + Staging,
+  .properties configuration, Log4j2, Google Java Style, retry once, API login
+
+PHASES
+Use the four phases in the Framework Master Prompt above.
+
+[Paste STANDARD RULES here]
+```
+
+---
+
+## 6. Before using AI-generated code: review checklist
+
+Do not merge generated code until the relevant checks are complete.
+
+### Does it work?
+- [ ] The project builds and tests run using the documented commands.
+- [ ] Parallel execution was actually tested, if required.
+
+### Is the code maintainable?
+- [ ] Locators are stable and stored in page objects.
+- [ ] No fixed sleeps; appropriate explicit waits or auto-waiting are used.
+- [ ] Assertions are in tests, and tests are independent.
+- [ ] Test data and configuration are separate from test logic.
+- [ ] There are no unnecessary dependencies.
+
+### Is it safe and is the evidence available?
+- [ ] Screenshots/logs are attached to the report on failure.
+- [ ] Credentials are neither hardcoded nor logged.
+- [ ] Real customer data and authentication state are not committed.
+
+### Are pipeline and documentation ready?
+- [ ] CI runs and publishes reports/artifacts with clear failure rules.
+- [ ] The README works on a clean machine.
+
+---
+
+## 7. Tips for getting better results
+
+| Do this | Avoid this |
+|---|---|
+| State the role, task, inputs, and expected output. | Asking only “create an automation framework.” |
+| Include the DOM for locator issues and logs for failures. | Asking “why is this failing?” without evidence. |
+| Work in small steps and run each step before continuing. | Generating everything at once and merging without review. |
+| Specify tool and language versions. | Accepting outdated APIs without checking. |
+| Ask the AI to list assumptions. | Assuming the AI knows your project standards. |
+
+## 8. Suggested workflow for a new framework
+
+1. Start with the **Framework Master Prompt** and complete Phases 1–4 one at a time.
+2. Use **P-04** and **P-05** when adding pages and tests.
+3. Use **P-06** if your tests need multiple data sets.
+4. Use **P-07** or **P-08** when tests become unstable or locators break.
+5. Use **P-14** for a code review before merging.
+6. Add optional prompts **P-16 to P-18** only when the project needs them.
+
+## Change log
+
+| Version | Date | Updates |
+|---|---|---|
+| 1.0 | 8 October 2026 | Initial release |
+| 2.0 | 14 October 2026 | Reduced core parameters, consolidated shared rules, introduced phased framework creation, and reduced the number of task prompts |
+| 3.0 | 14 October 2026 | Reorganized for task-based navigation, simplified instructions, explained placeholders, and clarified when and how to use each prompt |
