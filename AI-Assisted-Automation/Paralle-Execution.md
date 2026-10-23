@@ -6,6 +6,14 @@ Review the existing test execution configuration and parallel-safety.
 Task:
 {{EXECUTION_REQUIREMENT}}
 
+**Placeholder guidance for the user:**
+
+`{{EXECUTION_REQUIREMENT}}` — Describe the required parallel and cross-browser execution behaviour, including the browsers to support, desired concurrency, execution environment (local, remote, container, or cloud), test-isolation requirements, and CI/CD needs. Specify only the requirements relevant to your project; the prompt will inspect the existing framework to determine the appropriate implementation.
+
+**Example placeholder input (comma-separated):**
+
+Enable parallel execution, support Chrome Firefox and Edge, configure 4 concurrent workers or threads as supported by the framework, support local and remote execution, use existing Grid or cloud infrastructure where available, isolate browser sessions and test data, maintain CI/CD compatibility.
+
 Inspect the existing automation framework to identify:
 - Automation tool, programming language, and test runner
 - Supported browsers and execution environments
@@ -43,11 +51,5 @@ Do not claim that execution or validation succeeded unless it was
 actually performed.
 ```
 
-**Placeholder guidance for the user:**
 
-`{{EXECUTION_REQUIREMENT}}` — Describe the required parallel and cross-browser execution behaviour, including the browsers to support, desired concurrency, execution environment (local, remote, container, or cloud), test-isolation requirements, and CI/CD needs. Specify only the requirements relevant to your project; the prompt will inspect the existing framework to determine the appropriate implementation.
-
-**Example placeholder input (comma-separated):**
-
-Enable parallel execution, support Chrome Firefox and Edge, configure 4 concurrent workers or threads as supported by the framework, support local and remote execution, use existing Grid or cloud infrastructure where available, isolate browser sessions and test data, maintain CI/CD compatibility.
 
