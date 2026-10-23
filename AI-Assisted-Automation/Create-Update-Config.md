@@ -6,6 +6,24 @@ Review the existing configuration management in this automation framework.
 Task:
 {{CONFIGURATION_NEED}}
 
+Placeholder: {{CONFIGURATION_NEED}}
+
+Describe the configuration change you want in the existing automation framework.
+
+Examples:
+
+Allow environment selection through a command-line argument or system property.
+
+Allow browser selection through configuration.
+
+Load credentials securely from environment variables.
+
+Add validation for missing or invalid configuration values.
+
+Support configuration overrides for local and CI/CD execution.
+
+Specify the desired behavior, if known. You do not need to provide implementation details or identify the files to modify; inspect the existing framework to determine the appropriate solution.
+
 Inspect how the project currently handles environments, configuration files,
 overrides, and required settings.
 
